@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MobileApp</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}"/>
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-dark ">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="/index">Lab4-DNICK</a>
+       <a class="navbar-brand text-white justify-content-end" href="/index">Home</a>
+      
+  
+  </div>
+</nav>
+<div class="container mt-5 bg-light" style="max-width: 900px">
+    <div class="d-flex justify-content-evenly mt-5">
+        {% for mobile in mobile_list %}
+        <div class="card" style="width: 18rem;">
+          <img src="{{ mobile.photo.url }}" class="card-img-top" style="height: 300px" alt="...">
+          <div class="card-body text-center">
+{#            <h5 class="card-title">{{ mobile.code|default:"000" }}</h5>#}
+               <h5 class="card-title">{{ mobile.model }}</h5>
+            <p class="card-text">{{ mobile.name }}</p>
+              <p class="card-text">{{ mobile.manufacturer }}</p>
+              <p class="card-text">Tip na uredi: {{ mobile.type }}</p>
+              <p class="card-text">{{ mobile.price }}</p>
+            <a href="{% url 'details' mobile.id %}" class="btn  border w-75">Details</a>
+           
+
+          </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+</body>
+</html>
